@@ -1,7 +1,7 @@
 {
   "name": "apify",
   "version": "0.0.1",
-  "description": "A testing tool for bots interactions",
+  "description": "Turn json files into explorable API's",
   "homepage": "",
   "author": {
     "name": "Andre Aubin",
