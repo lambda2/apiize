@@ -1,13 +1,14 @@
 # apiize [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> A testing tool for bots interactions
 
 **Turn any JSON file into a full, explorable, REST API.**
 
-- Start apiize on a JSON file or url
+## Presentation
+
+#### Start apiize on a JSON file or url
 
 ![cli-demo](https://raw.githubusercontent.com/lambda2/apiize/master/images/apiize-cli.gif)
 
-- and make requests on it
+#### And make requests on it
 
 ![cli-demo](https://raw.githubusercontent.com/lambda2/apiize/master/images/apiize-example.gif)
 
@@ -147,6 +148,21 @@ Start the express server. Must be called when the `ready` event is called.
 
 ------------------
 
+## Tests
+
+  To run the test suite, first install the dependencies, then run `npm test`:
+
+```bash
+$ npm install
+$ npm test
+```
+
+## People
+
+[André Aubin](https://github.com/lambda2) [![Andre's Gratipay][gratipay-image-lambda2]][gratipay-url-lambda2]
+
+[List of all contributors](https://github.com/lambda2/apiize/graphs/contributors)
+
 ## License
 
 MIT © [Andre Aubin](http://andral.kiwi)
@@ -160,3 +176,5 @@ MIT © [Andre Aubin](http://andral.kiwi)
 [daviddm-url]: https://david-dm.org/lambda2/apiize
 [coveralls-image]: https://coveralls.io/repos/github/lambda2/apiize/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/lambda2/apiize?branch=master
+[gratipay-image-lambda2]: https://img.shields.io/gratipay/lambda2.svg
+[gratipay-url-lambda2]: https://gratipay.com/lambda2/
