@@ -22,6 +22,7 @@ exports['default'] = function () {
   if (process.argv.length === 2 || program.args.length === 0) {
     program.help();
   }
+  return program;
 };
 
 module.exports = exports['default'];
