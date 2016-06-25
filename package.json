@@ -23,6 +23,9 @@
   "bin": {
     "apiize": "dist/index.js"
   },
+  "engines": {
+    "node": ">=5.0.0"
+  },
   "devDependencies": {
     "babel-core": "^5.5.0",
     "del": "^2.0.2",
