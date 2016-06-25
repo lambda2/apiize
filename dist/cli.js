@@ -13,7 +13,6 @@ var Info = require('../package.json');
 
 exports['default'] = function () {
   program.version(Info.version).usage('[options] <link>').option('-p, --port <port>', 'Set the server port (default to 1313)', parseInt).option('-r, --root <root_key>', 'Get only data under the specified root key').option('-v, --verbose', 'Add additional logs').arguments('<link> [options]').action(function (cmd, env, o) {
-    console.log('Action !', cmd, env, o.verbose);
     var apiize = new Apiize(cmd, o);
     apiize.on('ready', function (e) {
       e.serve();

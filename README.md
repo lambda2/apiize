@@ -81,32 +81,59 @@ var Apiize = require('apiize');
 var api = new Apiize(link, options);
 ```
 
-### Apiize(link, options)
+### Apiize
+
+The main object, will turn any json file or url into explorable routes.
+
+### Events
+
+#### ready
+
+Triggered when the file or the link is fully loaded, and the express server is ready to be started.
+
+```js
+apiize.on('ready', function (server) {
+  server.serve(); // run the server
+});
+
+```
+
+
+### Methods
+
+
+#### new Apiize(link, options)
 
 Create a new Apiize object using the given `link` and `options`.
 The `link` argument must be a string of a JSON file or a JSON URL.
 
-#### Options
+> Apiize accepts these properties in the options object.
 
-Apiize accepts these properties in the options object.
+- verbose
 
-##### verbose
+  > Defaults to `false`, add a more verbose logging of incoming requests.
 
-Defaults to `false`, add a more verbose logging of incoming requests.
+  - Without `verbose`:
+  `GET / 200 146 - 6.079 ms`
 
-- Without `verbose`:
-`GET / 200 146 - 6.079 ms`
+  - With `verbose`:
+  `::1 - - [25/Jun/2016:15:41:06 +0000] "GET / HTTP/1.1" 200 750 "-" "curl/7.43.0"`
 
-- With `verbose`:
-`::1 - - [25/Jun/2016:15:41:06 +0000] "GET / HTTP/1.1" 200 750 "-" "curl/7.43.0"`
+- prefix
 
-##### prefix
+  > Set the root path of the generated api routes. Defaults to `api`.
 
-Set the root path of the generated api routes. Defaults to `api`.
+- port
 
-##### port
+  > Set the express server port. Defaults to `1313`.
 
-Set the express server port. Defaults to `1313`.
+#### on(event, callback)
+
+Triggered when an event is emmmited (e.g., the `ready` event).
+
+#### serve
+
+Start the express server. Must be called when the `ready` event is called.
 
 ## License
 

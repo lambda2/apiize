@@ -39,7 +39,6 @@ var Server = (function () {
       next();
     });
 
-    console.log(this.apiize.params.verbose);
     app.use(morgan(this.apiize.params.verbose ? 'combined' : 'tiny'));
 
     this.server = false;
