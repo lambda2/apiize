@@ -25,7 +25,7 @@ $ npm install -g apiize
 - Start a new server on a given JSON file or url
 
 ```bash
-$ apiize ./test/datasets/punchlines.json
+$ apiize 'https://raw.githubusercontent.com/lambda2/apiize/master/test/datasets/punchlines.json'
 
   ___        _ _
  / _ \      (_|_)
