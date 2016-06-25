@@ -1,7 +1,16 @@
 # apiize [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 > A testing tool for bots interactions
 
-**Turn any json file into a full, explorable, REST API.**
+**Turn any JSON file into a full, explorable, REST API.**
+
+- Start apiize on a JSON file or url
+
+![cli-demo](https://raw.githubusercontent.com/lambda2/apiize/master/images/apiize-cli.gif)
+
+- and make requests on it
+
+![cli-demo](https://raw.githubusercontent.com/lambda2/apiize/master/images/apiize-example.gif)
+
 
 ## Install
 
