@@ -1,36 +1,59 @@
-import assert from 'assert';
+
+import chai from 'chai';
+import { get } from 'get-content';
 import Apify from '../lib';
 
+const assert = chai.assert;
+
+const jsonTestFile = './test/datasets/punchlines.json';
+const jsonTestBadFile = 'test/datasets/bad_json.json';
+const jsonTestInexistantFile = './i-dont-exist.json';
+const jsonTestUrl = 'http://opendata.paris.fr/explore/dataset/les-1000-titres-les-plus-reserves-dans-les-bibliotheques-de-pret/download\?format\=json';
+
 describe('apify', function () {
-  it('should be created', function () {
-    let k = new Apify(function () {});
-    assert(k !== undefined, 'should not be nil');
+
+  describe('boot', function () {
+
+    it('should not be nil', function () {
+      let apify = new Apify(jsonTestFile);
+      assert.isOk(apify, 'should not be nil');
+    });
+
+    it('should be created from file', function (done) {
+      this.timeout(10000);
+      let apify = new Apify(jsonTestFile);
+      apify.on('ready', function (e) {
+        assert.isOk(e, 'should not be nil');
+        assert.isOk(e.rawData, 'should not be nil');
+        done();
+      });
+    });
+
+    it('should be created from url', function (done) {
+      this.timeout(10000);
+      let apify = new Apify(jsonTestUrl);
+      apify.on('ready', function (e) {
+        assert.isOk(e, 'should not be nil');
+        assert.isOk(e.rawData, 'should not be nil');
+        done();
+      });
+    });
+
+    it('should create server', function (done) {
+      this.timeout(10000);
+      let apify = new Apify(jsonTestUrl);
+      apify.on('ready', function (e) {
+        assert.isOk(e, 'should not be nil');
+        assert.isOk(e.rawData, 'should not be nil');
+        assert.isUndefined(e.server, 'should be nil');
+        e.serve();
+        assert.isOk(e.server, 'should be created');
+        get(`http://localhost:${e.server.params.port}`).then((response) => {
+          console.log("Content: ", response);
+          done();
+        });
+      });
+    });
   });
 
-  // it('should perform assertions', function () {
-
-  //   let inputCallback = function (input, callback) {
-  //     return callback(input + ', I\'m Andre the robot');
-  //   };
-
-  //   let k = new Apify(inputCallback);
-
-  //   assert(k !== undefined, 'should not be nil');
-  //   assert(k.params !== undefined, 'params should not be nil');
-  //   assert(k.params.dataset !== undefined, 'default dataset should not be nil');
-  // });
-
-  // it('should manage errors', function () {
-
-  //   let inputCallback = false;
-
-  //   assert.throws(function () {
-  //     new Apify(inputCallback, { dataset: 'i_do_not_exists'});
-  //   }, /dataset/);
-
-  //   assert.throws(function () {
-  //     new Apify(inputCallback);
-  //   }, /callback/);
-
-  // });
 });
