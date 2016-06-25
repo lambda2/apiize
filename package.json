@@ -1,6 +1,6 @@
 {
   "name": "apiize",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Turn any json file into a full, explorable, REST API",
   "homepage": "",
   "author": {
