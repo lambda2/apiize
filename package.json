@@ -1,6 +1,6 @@
 {
   "name": "apiize",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Turn any json file into a full, explorable, REST API",
   "homepage": "",
   "author": {
@@ -20,6 +20,9 @@
     "endpoints"
   ],
   "repository": "git@github.com:lambda2/apiize.git",
+  "bin": {
+    "apiize": "dist/index.js"
+  },
   "devDependencies": {
     "babel-core": "^5.5.0",
     "del": "^2.0.2",
