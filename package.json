@@ -1,6 +1,6 @@
 {
   "name": "apiize",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Turn any json file into a full, explorable, REST API",
   "homepage": "",
   "author": {
@@ -9,7 +9,8 @@
     "url": "http://andral.kiwi"
   },
   "files": [
-    "dist"
+    "dist",
+    "bin"
   ],
   "main": "dist/index.js",
   "keywords": [
