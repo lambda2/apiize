@@ -131,7 +131,7 @@ The `link` argument must be a string of a JSON file or a JSON URL.
 
 Triggered when an event is emmmited (e.g., the `ready` event).
 
-#### serve
+#### serve()
 
 Start the express server. Must be called when the `ready` event is called.
 
