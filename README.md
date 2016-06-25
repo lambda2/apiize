@@ -90,7 +90,8 @@ var api = new Apiize(link, options);
 Triggered when the file or the link is fully loaded, and the express server is ready to be started.
 
 ```js
-apiize.on('ready', function (server) {
+var api = new Apiize(link, options);
+api.on('ready', function (server) {
   server.serve(); // run the server
 });
 
