@@ -21,10 +21,10 @@
   ],
   "repository": "git@github.com:lambda2/apiize.git",
   "bin": {
-    "apiize": "dist/index.js"
+    "apiize": "dist/cli.js"
   },
   "engines": {
-    "node": ">=5.0.0"
+    "node": ">=0.10.0"
   },
   "devDependencies": {
     "babel-core": "^5.5.0",
