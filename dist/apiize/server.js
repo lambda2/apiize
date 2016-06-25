@@ -169,7 +169,7 @@ var Server = (function () {
   }, {
     key: 'hello',
     value: function hello() {
-      console.log('\n  ___        _ _         \n / _ \\      (_|_)        \n/ /_\\ \\_ __  _ _ _______ \n|  _  | \'_ \\| | |_  / _ \\\n| | | | |_) | | |/ /  __/\n\\_| |_/ .__/|_|_/___\\___|\n      | |                \n      |_|                \n    '.blue);
+      console.log('\n  ___        _ _         \n / _ \\      (_|_)        \n/ /_\\ \\_ __  _ _ _______ \n|  _  | \'_ \\| | |_  / _ \\\n| | | | |_) | | |/ /  __/\n\\_| |_/ .__/|_|_/___\\___|\n      | |                \n      |_|                \n    '.rainbow);
       console.log('💫 ' + (' Express has taken the stage and is listening on port ' + this.params.port + '\n').green);
       var _iteratorNormalCompletion3 = true;
       var _didIteratorError3 = false;

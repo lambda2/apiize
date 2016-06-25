@@ -48,7 +48,7 @@ var Apiize = (function (_EventEmitter) {
 
     _get(Object.getPrototypeOf(Apiize.prototype), 'constructor', this).call(this);
 
-    var defaults = { cache: true, verbose: false };
+    var defaults = { verbose: false };
     this.params = Object.assign(defaults, params);
     this.server = undefined;
 
