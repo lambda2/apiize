@@ -1,7 +1,7 @@
 {
   "name": "apify",
   "version": "0.0.1",
-  "description": "Turn json files into explorable API's",
+  "description": "Turn any json file into a full, explorable, REST API",
   "homepage": "",
   "author": {
     "name": "Andre Aubin",
