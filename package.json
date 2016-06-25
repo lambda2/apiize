@@ -1,12 +1,12 @@
 {
-  "name": "apify",
-  "version": "0.0.1",
+  "name": "apiize",
+  "version": "0.0.2",
   "description": "Turn any json file into a full, explorable, REST API",
   "homepage": "",
   "author": {
     "name": "Andre Aubin",
     "email": "andre.aubin@lamdaweb.fr",
-    "url": "andral.kiwi"
+    "url": "http://andral.kiwi"
   },
   "files": [
     "dist"
@@ -19,7 +19,7 @@
     "server",
     "endpoints"
   ],
-  "repository": "git@github.com:lambda2/apify.git",
+  "repository": "git@github.com:lambda2/apiize.git",
   "devDependencies": {
     "babel-core": "^5.5.0",
     "del": "^2.0.2",
