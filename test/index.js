@@ -2,6 +2,7 @@
 import chai from 'chai';
 import { get } from 'get-content';
 import Apiize from '../lib';
+import cli from '../lib/cli';
 
 const assert = chai.assert;
 
@@ -11,6 +12,20 @@ const jsonTestFile = './test/datasets/punchlines.json';
 const jsonTestUrl = 'http://opendata.paris.fr/explore/dataset/les-1000-titres-les-plus-reserves-dans-les-bibliotheques-de-pret/download\?format\=json';
 
 describe('apiize', function () {
+
+  describe('cli', function () {
+    it('should handle args', function (done) {
+
+      // Thug life
+      let oldArgvs = process.argv;
+      process.argv = ['node', 'apiize', '-v', '-p', '1234', 'tata'];
+      let program = cli();
+      assert.equal(program.port, 1234, 'port should be set');
+      assert.isTrue(program.verbose, 'verbose is enabled');
+      process.argv = oldArgvs;
+      done();
+    });
+  });
 
   describe('boot', function () {
 
