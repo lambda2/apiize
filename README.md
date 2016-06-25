@@ -81,9 +81,7 @@ var Apiize = require('apiize');
 var api = new Apiize(link, options);
 ```
 
-### Apiize
-
-The main object, will turn any json file or url into explorable routes.
+------------------
 
 ### Events
 
@@ -99,8 +97,9 @@ apiize.on('ready', function (server) {
 ```
 
 
-### Methods
+------------------
 
+### Methods
 
 #### new Apiize(link, options)
 
@@ -134,6 +133,9 @@ Triggered when an event is emmmited (e.g., the `ready` event).
 #### serve
 
 Start the express server. Must be called when the `ready` event is called.
+
+
+------------------
 
 ## License
 
