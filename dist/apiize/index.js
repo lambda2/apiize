@@ -24,8 +24,6 @@ var _require = require('./utils');
 var stringToSlug = _require.stringToSlug;
 
 var pluralize = require('pluralize');
-var jsonfile = require('jsonfile');
-var mkpath = require('mkpath');
 var isJSON = require('is-json');
 
 var _require2 = require('get-content');
@@ -50,7 +48,7 @@ var Apiize = (function (_EventEmitter) {
 
     _get(Object.getPrototypeOf(Apiize.prototype), 'constructor', this).call(this);
 
-    var defaults = { cache: true };
+    var defaults = { cache: true, verbose: false };
     this.params = Object.assign(defaults, params);
     this.server = undefined;
 
@@ -58,7 +56,6 @@ var Apiize = (function (_EventEmitter) {
       throw 'The provided file or url must be a string (got ' + typeof data + ')';
     }
     this.dataToJson(data).then(function (response) {
-      // console.log("Response got !", response, typeof response);
       _this.rawData = response;
       _this.generate();
       _this.emit('ready', _this);
@@ -89,7 +86,6 @@ var Apiize = (function (_EventEmitter) {
       var _this2 = this;
 
       // We collect all the available keys
-      console.log("Generate for ", this.rawData.length);
       var values = {};
       var currentId = 1;
 
@@ -114,8 +110,6 @@ var Apiize = (function (_EventEmitter) {
 
       _.each(this.rawData, function (e) {
         _.each(_.omit(e, ['id']), function (v, k) {
-          // console.log("Parsing object ", e);
-          // console.log(`On key ${k} -> value ${v}`);
           if (!_.isEmpty(k)) {
             (function () {
               var arrayData = Type.is(v, 'Array') ? v : [v];
@@ -131,7 +125,6 @@ var Apiize = (function (_EventEmitter) {
                   values[slug][keySlug] = values[slug][keySlug] ? _.union(values[slug][keySlug], [e.id]) : [e.id];
                 }
               });
-              // values[k] = (values[k] ? _.union(values[k], arrayData) : arrayData);
             })();
           }
         });
@@ -147,7 +140,6 @@ var Apiize = (function (_EventEmitter) {
         return _ref = {}, _defineProperty(_ref, resource, key), _defineProperty(_ref, 'url', '/' + resource + '/' + key), _defineProperty(_ref, 'count', val.length), _ref;
       });
       res.json(response);
-      this.saveCache(req, response);
     }
   }, {
     key: 'showCallbackForResource',
@@ -159,7 +151,6 @@ var Apiize = (function (_EventEmitter) {
         return _.find(_this3.rawData, { id: e });
       });
       res.json(response);
-      this.saveCache(req, response);
     }
   }, {
     key: 'randomCallbackForAll',
@@ -168,31 +159,8 @@ var Apiize = (function (_EventEmitter) {
     }
   }, {
     key: 'allCallbackForAll',
-    value: function allCallbackForAll(res, req) {
+    value: function allCallbackForAll(res) {
       res.json(this.rawData);
-      this.saveCache(req, this.rawData);
-    }
-  }, {
-    key: 'saveCache',
-    value: function saveCache(req, response) {
-      console.log("Save cache for request: ", req);
-      if (this.params.cache) {
-        (function () {
-          var file = '.cache' + req;
-          var folder = file.split('/').slice(0, -1).join('/');
-          mkpath(folder, function (err) {
-            if (err) {
-              console.warn(err);
-            }
-
-            // console.log(`Directory structure ${folder} created`);
-
-            jsonfile.writeFile(file + '.json', response, function (error) {
-              // console.warn(error);
-            });
-          });
-        })();
-      }
     }
   }, {
     key: 'routes',
@@ -206,14 +174,12 @@ var Apiize = (function (_EventEmitter) {
           route: indexRoute,
           info: 'Return all the ' + pluralize(k),
           callback: function callback(req, res) {
-            // console.log("MATCH ROUTE", indexRoute);
             _this4.indexCallbackForResource(res, req, k, v);
           }
         }, {
           route: showRoute,
           info: 'Return the given ' + pluralize(k),
           callback: function callback(req, res) {
-            // console.log("MATCH ROUTE", indexRoute);
             _this4.showCallbackForResource(res, req, v, req.params.id);
           }
         }];
@@ -223,14 +189,12 @@ var Apiize = (function (_EventEmitter) {
         route: '/',
         info: 'Return all items',
         callback: function callback(req, res) {
-          // console.log("MATCH ROUTE /");
           _this4.allCallbackForAll(res, req);
         }
       }, {
         route: '/random',
         info: 'A random item',
         callback: function callback(req, res) {
-          // console.log("MATCH ROUTE /random");
           _this4.randomCallbackForAll(res, req);
         }
       }];

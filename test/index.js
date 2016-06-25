@@ -58,6 +58,8 @@ describe('apiize', function () {
         assert.isOk(e.server, 'should be created');
         get(`http://localhost:${e.server.params.port}`).then((response) => {
           console.log("Content: ", response);
+          assert.match(response, /This api only respond to json/, 'should return html response');
+          e.server.stop();
           done();
         }).catch((err) => {
           return done(err);
