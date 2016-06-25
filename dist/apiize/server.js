@@ -9,12 +9,16 @@ var _createClass = (function () { function defineProperties(target, props) { for
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 require('colors');
+var morgan = require('morgan');
 var express = require('express');
 var app = express();
 var expressRouter = express.Router;
 var responseTime = require('response-time');
 
 var Server = (function () {
+
+  // Create a new Express server
+
   function Server(apiize) {
     var params = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
@@ -29,10 +33,14 @@ var Server = (function () {
     this.params = Object.assign(defaults, params);
     app.use(responseTime());
 
+    // Set json header
     app.use(function (req, res, next) {
       res.header('Content-Type', 'application/json');
       next();
     });
+
+    console.log(this.apiize.params.verbose);
+    app.use(morgan(this.apiize.params.verbose ? 'combined' : 'tiny'));
 
     this.server = false;
     this.routes = this.apiize.routes();
@@ -44,6 +52,8 @@ var Server = (function () {
       res.status(404).json({ error: 'Not found', message: 'Unable to find route to ' + req.path });
     });
   }
+
+  // Handle root path
 
   _createClass(Server, [{
     key: 'index',
@@ -94,6 +104,8 @@ var Server = (function () {
 
       return router;
     }
+
+    // Create index ouf routes on the root path
   }, {
     key: 'jsonIndex',
     value: function jsonIndex(routes) {
@@ -108,6 +120,8 @@ var Server = (function () {
       }
       return this.indexCache;
     }
+
+    // Create routes
   }, {
     key: 'router',
     value: function router() {
@@ -140,6 +154,8 @@ var Server = (function () {
 
       return router;
     }
+
+    // Stop the server
   }, {
     key: 'stop',
     value: function stop() {
@@ -148,6 +164,8 @@ var Server = (function () {
         this.server = false;
       }
     }
+
+    // Say hello and print routes
   }, {
     key: 'hello',
     value: function hello() {
@@ -179,6 +197,8 @@ var Server = (function () {
         }
       }
     }
+
+    // Start the server
   }, {
     key: 'listen',
     value: function listen() {
